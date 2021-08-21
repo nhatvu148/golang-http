@@ -8,6 +8,7 @@ import (
 	"github.com/nhatvu148/go-http/controller"
 	"github.com/nhatvu148/go-http/middleware"
 	"github.com/nhatvu148/go-http/service"
+	gindump "github.com/tpkeeper/gin-dump"
 )
 
 var (
@@ -25,7 +26,7 @@ func main() {
 
 	// server := gin.Default()
 	server := gin.New()
-	server.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth())
+	server.Use(gin.Recovery(), middleware.Logger(), middleware.BasicAuth(), gindump.Dump())
 
 	server.GET("/test", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
